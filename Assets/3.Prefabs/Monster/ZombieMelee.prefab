@@ -75,8 +75,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  jumpForce: 2.5
-  detectionDistance: 2
+  jumpForce: 2
+  detectionDistance: 0.1
   climbSpeed: 3
   climbOverSpeed: 2
   headRayPoint: {fileID: 7683818165136220079}
@@ -97,7 +97,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 20
   m_Material: {fileID: 6200000, guid: 2db85a94cd5b9604db0b1f3a1dd36ed2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -157,15 +157,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
-  climbSpeed: 2
+  climbSpeed: 1
+  climbForce: 0.5
+  stabilizationForce: 1
   headRayPoint: {fileID: 7683818165136220079}
   footRayPoint: {fileID: 753367195908505086}
-  rayDistance: 0.5
+  rayDistance: 0.1
   monsterLayerMask:
     serializedVersion: 2
     m_Bits: 0
   headPosition: {fileID: 2991603104488750176}
   headTriggerSize: {x: 0.8, y: 0.2}
+  rbMass: 1
+  rbDrag: 0.5
+  useAlternativeMethod: 0
 --- !u!1 &1440440190098050971
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2991603104488750176}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 278431147620348935}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: detectionPointBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5549818585384498318}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: headPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1395318751277446472}
   - component: {fileID: 7928511827763145290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: arm_r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4491516224192526601}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg_lPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1390984449423877832}
   - component: {fileID: 6012614561082821375}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4117193198607075230}
   - component: {fileID: 7969222207150852787}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +558,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5034332594619086819}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: arm_lPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,7 +591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9047505522530119778}
   - component: {fileID: 4391178048448326450}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -669,7 +674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 753367195908505086}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: detectionPointFeet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -700,7 +705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4121376888754406373}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: arm_rPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,7 +737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639109334033341928}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bodyPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,7 +775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1795158308826264389}
   - component: {fileID: 2228757155372488290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg_r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -853,7 +858,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7683818165136220079}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: detectionPointHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,7 +890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2488240717351641533}
   - component: {fileID: 6851911621866096364}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: arm_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -968,7 +973,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8238610049920116614}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg_rPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
